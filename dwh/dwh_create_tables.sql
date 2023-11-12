@@ -1,8 +1,11 @@
-USE DATABASE "YELP";
+USE
+DATABASE "YELP";
 CREATE SCHEMA IF NOT EXISTS "YELP"."DWH_SCHEMA";
-USE SCHEMA "YELP"."DWH_SCHEMA";
+USE
+SCHEMA "YELP"."DWH_SCHEMA";
 
-CREATE OR REPLACE TABLE dim_business (
+CREATE
+OR REPLACE TABLE dim_business (
     business_id                     TEXT            PRIMARY KEY,
     name                            TEXT,
     address                         TEXT,
@@ -25,7 +28,8 @@ CREATE OR REPLACE TABLE dim_business (
     covid_virtual_services_offered  TEXT
 );
 
-CREATE OR REPLACE TABLE dim_timestamp (
+CREATE
+OR REPLACE TABLE dim_timestamp (
     timestamp           DATETIME    PRIMARY KEY,
     date                DATE,
     day                 INT,
@@ -34,7 +38,8 @@ CREATE OR REPLACE TABLE dim_timestamp (
     year                INT 
 );
 
-CREATE OR REPLACE TABLE dim_user (
+CREATE
+OR REPLACE TABLE dim_user (
     user_id             TEXT            PRIMARY KEY,
     name                TEXT,
     review_count        INT,
@@ -59,7 +64,8 @@ CREATE OR REPLACE TABLE dim_user (
     compliment_photos   INT
 );
 
-CREATE OR REPLACE TABLE dim_temperature (
+CREATE
+OR REPLACE TABLE dim_temperature (
     date                        DATE     PRIMARY KEY,
     temp_min                    FLOAT,
     temp_max                    FLOAT,
@@ -67,13 +73,15 @@ CREATE OR REPLACE TABLE dim_temperature (
     temp_normal_max             FLOAT
 );
 
-CREATE OR REPLACE TABLE dim_precipitation (
+CREATE
+OR REPLACE TABLE dim_precipitation (
     date                        DATE     PRIMARY KEY,
     precipitation               FLOAT,
     precipitation_normal        FLOAT
 );
 
-CREATE OR REPLACE TABLE fact_review (
+CREATE
+OR REPLACE TABLE fact_review (
     review_id           TEXT        PRIMARY KEY,
     user_id             TEXT,
     business_id         TEXT,

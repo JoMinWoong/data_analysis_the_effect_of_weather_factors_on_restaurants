@@ -1,8 +1,7 @@
 USE DATABASE "YELP";
 USE SCHEMA "YELP"."STAGE";
 
-CREATE OR REPLACE FILE FORMAT sf_tut_csv_format
-    FIELD_DELIMITER = NONE
+CREATE OR REPLACE FILE FORMAT sf_tut_csv_format FIELD_DELIMITER = NONE
     RECORD_DELIMITER = '\\n';
 
 CREATE OR REPLACE TEMPORARY STAGE sf_tut_stage
@@ -10,9 +9,11 @@ CREATE OR REPLACE TEMPORARY STAGE sf_tut_stage
 
 PUT file:///Users/minwoong.cho/Jo/dev/udacity/data_archtect/projects/weather_affects_restaurant/udacity-data-architect-yelp-weather/data/yelp_dataset/yelp_academic_dataset_user.json @sf_tut_stage;
 
-COPY INTO yelp_user(user_id, name, review_count, yelping_since, useful, funny, cool, elite, friends, fans, average_stars,
-                    compliment_hot, compliment_more, compliment_profile, compliment_cute, compliment_list, compliment_note,
-                    compliment_plain, compliment_cool, compliment_funny, compliment_writer, compliment_photos)
+COPY INTO yelp_user (user_id, name, review_count, yelping_since, useful, funny, cool, elite, friends, fans,
+                     average_stars,
+                     compliment_hot, compliment_more, compliment_profile, compliment_cute, compliment_list,
+                     compliment_note,
+                     compliment_plain, compliment_cool, compliment_funny, compliment_writer, compliment_photos)
     FROM (SELECT parse_json($1):user_id,
                  parse_json($1):name,
                  parse_json($1):review_count,
